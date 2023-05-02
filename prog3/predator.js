@@ -1,4 +1,5 @@
-class Predator extends LivingCreature {
+let LivingCreature = require("./livingcreature")
+module.exports = class Predator extends LivingCreature {
 
   chooseCell(character) {
     this.getNewCoordinates();
@@ -21,7 +22,7 @@ class Predator extends LivingCreature {
     let grasses = this.chooseCell(1);
     let grassEaters = this.chooseCell(2);
     let all = grasses.concat(grassEaters);
-    let oneCharecter = random(all);
+    let oneCharecter = this.random(all);
     if (oneCharecter) {
       let oneCharecterX = oneCharecter[0];
       let oneCharecterY = oneCharecter[1];
@@ -50,7 +51,7 @@ class Predator extends LivingCreature {
   }
   move() {
     let emptyCells = this.chooseCell(0);
-    let oneEmptyCell = random(emptyCells);
+    let oneEmptyCell = this.random(0);
     if (oneEmptyCell) {
       matrix[this.y][this.x] = 0;
       let neighX = oneEmptyCell[0];

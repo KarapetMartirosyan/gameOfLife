@@ -1,72 +1,118 @@
+var soket = io()
+
+
+
 var side = 35;
-let grassArr = [];
-let grassEaterArr = [];
-matrix = [];
-let predatorArr = [];
-let bombArr = [];
 function setup() {
   frameRate(20);
-  function matrixGenerator(
-    size,
-    countGrass,
-    countGrassEater,
-    countPredator,
-    countBomb
-  ) {
-    for (let i = 0; i < size; i++) {
-      matrix.push([]);
-      for (let j = 0; j < size; j++) {
-        matrix[i].push(0);
-      }
-    }
-    for (let i = 0; i < countGrass; i++) {
-      let x = Math.floor(random(size));
-      let y = Math.floor(random(size));
-      matrix[x][y] = 1;
-    }
-    for (let i = 0; i < countGrassEater; i++) {
-      let x = Math.floor(random(size));
-      let y = Math.floor(random(size));
-      matrix[x][y] = 2;
-    }
-    for (let i = 0; i < countPredator; i++) {
-      let x = Math.floor(random(size));
-      let y = Math.floor(random(size));
-      matrix[x][y] = 3;
-    }
-    for (let i = 0; i < countBomb; i++) {
-      let x = Math.floor(random(size));
-      let y = Math.floor(random(size));
-      if (x != 0 && x != matrix.length && y != 0 && y != matrix.length) {
-        matrix[x][y] = 5;
-      }
-    }
-    matrix[0][0] = 4;
-  }
-  matrixGenerator(24, 50, 7, 5, 7);
-  background("#acacac");
+  createCanvas(50 * side, 50 * side);
+  button1 = document.getElementById('summer');
+  button2 = document.getElementById('spring');
+  button3 = document.getElementById('autumn');
+  button4 = document.getElementById('winter');
+  button1.addEventListener("click" , onSocket);
+  button2.addEventListener("click" , onSocket2);
+  button3.addEventListener("click" , onSocket3);
+  button4.addEventListener("click" , onSocket4);
+}
+function onSocket(){
+  soket.on("send matrix", summer)
+}
+function onSocket2(){
+  soket.on("send matrix", spring)
+}
+function onSocket3(){
+  soket.on("send matrix", autumn)
+}
+function onSocket4(){
+  soket.on("send matrix", winter)
+}
+
+
+function summer(matrix) {
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 1) {
-        let grass = new Grass(x, y);
-        grassArr.push(grass);
+        fill("#2a5904");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 0) {
+        fill("#73fc03");
+        rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 2) {
-        let grassEater = new GrassEater(x, y);
-        grassEaterArr.push(grassEater);
+        fill("yellow");
+        rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 3) {
-        let predator = new Predator(x, y);
-        predatorArr.push(predator);
+        fill("red");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 4) {
+        fill("blue");
+        rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 5) {
-        let bomb = new Bomb(x, y);
-        bombArr.push(bomb);
+        fill("black");
+        rect(x * side, y * side, side, side);
+      }
+      else if (matrix[y][x] == 6) {
+        fill("white");
+        rect(x * side, y * side, side, side);
       }
     }
   }
-  createCanvas(matrix[0].length * side, matrix.length * side);
-  snake = new Snake(0, 0);
 }
-
-function draw() {
+function autumn(matrix) {
+  for (var y = 0; y < matrix.length; y++) {
+    for (var x = 0; x < matrix[y].length; x++) {
+      if (matrix[y][x] == 1) {
+        fill("#9ef507");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 0) {
+        fill("#f3fc90");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 2) {
+        fill("#f59e07");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 3) {
+        fill("#48084f");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 4) {
+        fill("#0d59ff");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 5) {
+        fill("black");
+        rect(x * side, y * side, side, side);
+      }
+      else if (matrix[y][x] == 6) {
+        fill("white");
+        rect(x * side, y * side, side, side);
+      }
+    }
+  }
+}
+function winter(matrix) {
+  for (var y = 0; y < matrix.length; y++) {
+    for (var x = 0; x < matrix[y].length; x++) {
+      if (matrix[y][x] == 1) {
+        fill("#def5cb");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 0) {
+        fill("white");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 2) {
+        fill("#def5cb");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 3) {
+        fill("red");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 4) {
+        fill("#059bff");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 5) {
+        fill("black");
+        rect(x * side, y * side, side, side);
+      }
+    }
+  }
+}
+function spring(matrix) {
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 1) {
@@ -88,29 +134,46 @@ function draw() {
         fill("black");
         rect(x * side, y * side, side, side);
       }
+      else if (matrix[y][x] == 6) {
+        fill("white");
+        rect(x * side, y * side, side, side);
+      }
     }
   }
-  for (let i = 0; i < grassArr.length; i++) {
-    grassArr[i].mul();
-  }
-  for (let i = 0; i < grassEaterArr.length; i++) {
-    grassEaterArr[i].eat();
-  }
-  for (let i = 0; i < grassEaterArr.length; i++) {
-    grassEaterArr[i].mul();
-  }
-  for (let i = 0; i < predatorArr.length; i++) {
-    predatorArr[i].eat();
-  }
-  // for(let i = 0; i < bombArr.length; i++){
-  //     bombArr[i].boom()
-  // }
-  snake.move();
 }
+function draww(matrix) {
+  for (var y = 0; y < matrix.length; y++) {
+    for (var x = 0; x < matrix[y].length; x++) {
+      if (matrix[y][x] == 1) {
+        fill("green");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 0) {
+        fill("#acacac");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 2) {
+        fill("yellow");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 3) {
+        fill("red");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 4) {
+        fill("blue");
+        rect(x * side, y * side, side, side);
+      } else if (matrix[y][x] == 5) {
+        fill("black");
+        rect(x * side, y * side, side, side);
+      }
+      else if (matrix[y][x] == 6) {
+        fill("white");
+        rect(x * side, y * side, side, side);
+      }
+    }
+  }
 
-function aa() {
-  for (let i = 0; i < bombArr.length; i++) {
-    bombArr[i].boom();
-  }
+
+ 
+
 }
-setInterval(aa, 3000);
+soket.on("send matrix", draww)
+
+

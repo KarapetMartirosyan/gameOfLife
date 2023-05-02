@@ -1,4 +1,5 @@
-class Snake extends LivingCreature {
+let LivingCreature = require("./livingcreature")
+module.exports = class Snake extends LivingCreature {
   move() {
     if (this.y == 0 && this.x < matrix.length - 1) {
       matrix[this.y][this.x] = 0;

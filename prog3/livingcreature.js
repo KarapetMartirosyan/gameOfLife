@@ -1,4 +1,4 @@
-class LivingCreature {
+module.exports = class LivingCreature {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -26,5 +26,10 @@ class LivingCreature {
       }
     }
     return found;
+  }
+  random(character) {
+    let found = this.chooseCell(character);
+    let result = Math.floor(Math.random() * found.length)
+    return found[result];
   }
 }

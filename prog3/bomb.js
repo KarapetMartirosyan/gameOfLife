@@ -1,8 +1,9 @@
-class Bomb extends LivingCreature {
+let LivingCreature = require("./livingcreature")
+module.exports = class Bomb extends LivingCreature {
   boom() {
     for (let i = 0; i < bombArr.length; i++) {
       if (this.x == bombArr[i].x && this.y == bombArr[i].y) {
-        matrix[this.y][this.x] = 0;
+        matrix[this.y][this.x]  = 0;
         bombArr.splice(i, 1);
       }
       break;
@@ -13,7 +14,7 @@ class Bomb extends LivingCreature {
       if (
         neighX >= 0 &&
         neighX < matrix[0].length &&
-        neighY >= 0 &&
+        neighY >=  0 &&
         neighY < matrix.length
       ) {
         matrix[neighY][neighX] = 0;
