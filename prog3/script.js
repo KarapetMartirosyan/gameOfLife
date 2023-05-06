@@ -27,6 +27,17 @@ function onSocket3(){
 function onSocket4(){
   soket.on("send matrix", winter)
 }
+// function stateGenerator(data){
+//   let grass = document.getElementById("grass")
+//   let grassEater = document.getElementById("grassEater")
+//   let predator = document.getElementById("predator")
+//   grass.innerHTML = "GrassCount: "  + data.grasses;
+//   grassEater.innerHTML = "GrassEaterCount: "  + data.grassEaters;
+//   predator.innerHTML = "PredatorCount: "  + data.predators;
+//   console.log(data);
+// }
+
+// soket.on("send state", stateGenerator)
 
 
 function summer(matrix) {
@@ -36,7 +47,7 @@ function summer(matrix) {
         fill("#2a5904");
         rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 0) {
-        fill("#73fc03");
+        fill("#86d975");
         rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 2) {
         fill("yellow");
@@ -87,17 +98,17 @@ function autumn(matrix) {
     }
   }
 }
-function winter(matrix) {
+function statewinter(matrix) {
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 1) {
-        fill("#def5cb");
+        fill("#32b354");
         rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 0) {
         fill("white");
         rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 2) {
-        fill("#def5cb");
+        fill("#848c3e");
         rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 3) {
         fill("red");

@@ -5,15 +5,15 @@ module.exports = class Personage extends LivingCreature {
     return found[result];
   }
   mushroom() {
-    let grasses = this.chooseCell(1)
-  
 
+    let cells = this.chooseCell(0)
+    let grasses = this.chooseCell(1)
     let grassEaters = this.chooseCell(2)
     let predators = this.chooseCell(3)
-    var all = grasses.concat(grassEaters, predators)
+    var all = grasses.concat(grassEaters,cells, predators)
     var rand = this.random(all)
 
-    console.log(grasses);
+    // console.log(rand);
     let neighX = rand[0];
     let neighY = rand[1];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     // console.log(rand)
@@ -42,6 +42,13 @@ module.exports = class Personage extends LivingCreature {
           }
         }//splice predator
         matrix[this.y][this.x] = 0
+        for(let i in personageArr){
+          console.log("hanec");
+          if (this.x == personageArr[i].x && this.y == personageArr[i].y) {
+            personageArr.splice(i, 1);
+            break;
+          } 
+        }
       }
     }
   }

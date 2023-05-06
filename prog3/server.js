@@ -63,7 +63,7 @@ function matrixGenerator(size,countGrass,countGrassEater,countPredator,countBomb
    for (let i = 0; i < countPersonage; i++) {
       let x = Math.floor(getRandInt(0,size-1));
       let y = Math.floor(getRandInt(0,size-1));
-      if (x != 0 && x != matrix.length && y != 0 && y != matrix.length) {
+      if (x >= 0 && x <= matrix[0].length && y >= 0 && y <= matrix.length) {
          matrix[x][y] = 6;
       }
    }
@@ -110,11 +110,17 @@ function game() {
    for (let i = 0; i < predatorArr.length; i++) {
       predatorArr[i].eat();
    }
-   for (let i = 0; i < personageArr.length; i++) {
-      setTimeout(() => {
-         personageArr[i].mushroom()
-       }, 10000);
-   }
+   
+// state = {
+//    grasses : grassArr.length,
+//    grassEaters : grassEaterArr.length,
+//    predators : predatorArr.length,
+//    mushrooms: personageArr.length,
+//    boombs: bombArr,
+//    snake: 1,
+// }
+
+// io.emit("send state", state)
    snake.move();
    io.emit("send matrix",matrix)
 
@@ -125,8 +131,18 @@ function aa() {
    }
 }
 
+function mushrooms() {
+   for (let i = 0; i < personageArr.length; i++) {
+      // console.log(personageArr.length);
+      personageArr[i].mushroom();
+   }
+}
+
+
+
+setInterval(mushrooms, 10000)
 setInterval(aa, 3000);
-matrixGenerator(24, 30, 1, 2, 3,1);
+matrixGenerator(24, 30, 10, 2, 3,5);
 
 setInterval(game, 500)
 createObj()
