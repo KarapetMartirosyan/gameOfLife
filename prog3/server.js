@@ -111,16 +111,13 @@ function game() {
       predatorArr[i].eat();
    }
    
-// state = {
-//    grasses : grassArr.length,
-//    grassEaters : grassEaterArr.length,
-//    predators : predatorArr.length,
-//    mushrooms: personageArr.length,
-//    boombs: bombArr,
-//    snake: 1,
-// }
+state = {
+   grasses : grassArr.length,
+   grassEaters : grassEaterArr.length,
+   predators : predatorArr.length,
+}
 
-// io.emit("send state", state)
+io.emit("send state", state)
    snake.move();
    io.emit("send matrix",matrix)
 

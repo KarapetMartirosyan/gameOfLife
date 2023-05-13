@@ -27,17 +27,17 @@ function onSocket3(){
 function onSocket4(){
   soket.on("send matrix", winter)
 }
-// function stateGenerator(data){
-//   let grass = document.getElementById("grass")
-//   let grassEater = document.getElementById("grassEater")
-//   let predator = document.getElementById("predator")
-//   grass.innerHTML = "GrassCount: "  + data.grasses;
-//   grassEater.innerHTML = "GrassEaterCount: "  + data.grassEaters;
-//   predator.innerHTML = "PredatorCount: "  + data.predators;
-//   console.log(data);
-// }
+function stateGenerator(data){
+  let grass = document.getElementById("grass")
+  let grassEater = document.getElementById("grassEater")
+  let predator = document.getElementById("predator")
+  grass.innerHTML = "GrassCount: "  + data.grasses;
+  grassEater.innerHTML = "GrassEaterCount: "  + data.grassEaters;
+  predator.innerHTML = "PredatorCount: "  + data.predators;
+  console.log(data);
+}
 
-// soket.on("send state", stateGenerator)
+soket.on("send state", stateGenerator)
 
 
 function summer(matrix) {
