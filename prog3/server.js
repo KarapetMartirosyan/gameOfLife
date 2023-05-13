@@ -96,10 +96,17 @@ function createObj() {
    io.emit("send matrix",matrix)
 
 }
+var mult = 4
+
+io.on('connection', function (socket) {
+   socket.on("weather", function (data) {
+      mult = data
+   });
+});
 
 function game() {
    for (let i = 0; i < grassArr.length; i++) {
-      grassArr[i].mul();
+      grassArr[i].mul(mult);
    }
    for (let i = 0; i < grassEaterArr.length; i++) {
       grassEaterArr[i].eat();
@@ -134,7 +141,6 @@ function mushrooms() {
       personageArr[i].mushroom();
    }
 }
-
 
 
 setInterval(mushrooms, 10000)

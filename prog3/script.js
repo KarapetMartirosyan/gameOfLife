@@ -17,15 +17,23 @@ function setup() {
 }
 function onSocket(){
   soket.on("send matrix", summer)
+  soket.emit("weather",3)
+
 }
 function onSocket2(){
   soket.on("send matrix", spring)
+  soket.emit("weather",4)
+
 }
 function onSocket3(){
   soket.on("send matrix", autumn)
+  soket.emit("weather",6)
+
 }
 function onSocket4(){
   soket.on("send matrix", winter)
+  soket.emit("weather",10)
+
 }
 function stateGenerator(data){
   let grass = document.getElementById("grass")
@@ -98,7 +106,7 @@ function autumn(matrix) {
     }
   }
 }
-function statewinter(matrix) {
+function winter(matrix) {
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 1) {
