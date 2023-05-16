@@ -7,7 +7,7 @@ module.exports = class Grass extends LivingCreature {
     if (newCell && this.multiplay >= multi)   { 
       var newGrass = new Grass(newCell[0], newCell[1]);
       grassArr.push(newGrass);
-      matrix[newCell[0]][newCell[1]] = 1;
+      matrix[newCell[1]][newCell[0]] = 1;
       this.multiplay = 0;
     }
   }

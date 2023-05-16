@@ -19,10 +19,9 @@ let Snake = require("./snake")
 let Bomb = require("./bomb")
 let Personage = require("./personage")
 
-function getRandInt(min,max)
-{
-    var z = Math.floor(Math.random()*(max-min+1)) + min;
-    return z;
+function getRandInt(min, max) {
+   var z = Math.floor(Math.random() * (max - min + 1)) + min;
+   return z;
 }
 
 grassArr = [];
@@ -31,7 +30,7 @@ matrix = [];
 predatorArr = [];
 bombArr = [];
 personageArr = []
-function matrixGenerator(size,countGrass,countGrassEater,countPredator,countBomb,countPersonage ) {
+function matrixGenerator(size, countGrass, countGrassEater, countPredator, countBomb, countPersonage) {
    for (let i = 0; i < size; i++) {
       matrix.push([]);
       for (let j = 0; j < size; j++) {
@@ -39,36 +38,36 @@ function matrixGenerator(size,countGrass,countGrassEater,countPredator,countBomb
       }
    }
    for (let i = 0; i < countGrass; i++) {
-      let x = Math.floor(getRandInt(0,size-1));
-      let y = Math.floor(getRandInt(0,size-1));
+      let x = Math.floor(getRandInt(0, size - 1));
+      let y = Math.floor(getRandInt(0, size - 1));
       matrix[x][y] = 1;
    }
    for (let i = 0; i < countGrassEater; i++) {
-      let x = Math.floor(getRandInt(0,size-1));
-      let y = Math.floor(getRandInt(0,size-1));
+      let x = Math.floor(getRandInt(0, size - 1));
+      let y = Math.floor(getRandInt(0, size - 1));
       matrix[x][y] = 2;
    }
    for (let i = 0; i < countPredator; i++) {
-      let x = Math.floor(getRandInt(0,size-1));
-      let y = Math.floor(getRandInt(0,size-1));
+      let x = Math.floor(getRandInt(0, size - 1));
+      let y = Math.floor(getRandInt(0, size - 1));
       matrix[x][y] = 3;
    }
    for (let i = 0; i < countBomb; i++) {
-      let x = Math.floor(getRandInt(0,size-1));
-      let y = Math.floor(getRandInt(0,size-1));
+      let x = Math.floor(getRandInt(0, size - 1));
+      let y = Math.floor(getRandInt(0, size - 1));
       if (x != 0 && x != matrix.length && y != 0 && y != matrix.length) {
          matrix[x][y] = 5;
       }
    }
    for (let i = 0; i < countPersonage; i++) {
-      let x = Math.floor(getRandInt(0,size-1));
-      let y = Math.floor(getRandInt(0,size-1));
+      let x = Math.floor(getRandInt(0, size - 1));
+      let y = Math.floor(getRandInt(0, size - 1));
       if (x >= 0 && x <= matrix[0].length && y >= 0 && y <= matrix.length) {
          matrix[x][y] = 6;
       }
    }
    matrix[0][0] = 4;
-   io.emit("send matrix",matrix)
+   io.emit("send matrix", matrix)
 }
 
 function createObj() {
@@ -86,23 +85,19 @@ function createObj() {
          } else if (matrix[y][x] == 5) {
             let bomb = new Bomb(x, y);
             bombArr.push(bomb);
-         }else if (matrix[y][x] == 6) {
+         } else if (matrix[y][x] == 6) {
             let personage = new Personage(x, y);
             personageArr.push(personage);
          }
       }
    }
    snake = new Snake(0, 0);
-   io.emit("send matrix",matrix)
+   io.emit("send matrix", matrix)
 
 }
 var mult = 4
 
-io.on('connection', function (socket) {
-   socket.on("weather", function (data) {
-      mult = data
-   });
-});
+
 
 function game() {
    for (let i = 0; i < grassArr.length; i++) {
@@ -117,16 +112,17 @@ function game() {
    for (let i = 0; i < predatorArr.length; i++) {
       predatorArr[i].eat();
    }
-   
-state = {
-   grasses : grassArr.length,
-   grassEaters : grassEaterArr.length,
-   predators : predatorArr.length,
-}
 
-io.emit("send state", state)
+   state = {
+      grasses: grassArr.length,
+      grassEaters: grassEaterArr.length,
+      predators: predatorArr.length,
+   }
+// console.log(grassArr.length);
+ 
+   io.emit("send state", state)
    snake.move();
-   io.emit("send matrix",matrix)
+   io.emit("send matrix", matrix)
 
 }
 function aa() {
@@ -142,11 +138,26 @@ function mushrooms() {
    }
 }
 
-
+io.on('connection', function (socket) {
+   createObj()
+   a = setInterval(game, 500)
+   socket.on("signal",event1)
+   socket.on("weather", function (data) {
+      mult = data
+   });
+});
 setInterval(mushrooms, 10000)
 setInterval(aa, 3000);
-matrixGenerator(24, 30, 10, 2, 3,5);
-
-setInterval(game, 500)
-createObj()
+matrixGenerator(24, 30, 10, 2, 3, 5);
+count  = 0
+function event1(){
+   console.log("signbaaaaaaal");
+   count++
+   if(count%2==0){
+     a = setInterval(game,500)
+   }
+   else if(count%2!=0){
+     clearInterval(a)
+   }
+}
 

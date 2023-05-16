@@ -10,14 +10,14 @@ module.exports = class Personage extends LivingCreature {
     let grasses = this.chooseCell(1)
     let grassEaters = this.chooseCell(2)
     let predators = this.chooseCell(3)
-    var all = grasses.concat(grassEaters,cells, predators)
+    var all = grasses.concat(grassEaters, cells, predators)
     var rand = this.random(all)
 
     // console.log(rand);
     let neighX = rand[0];
-    let neighY = rand[1];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-    // console.log(rand)
-    if (matrix[neighY][neighX] ==  0) {
+    let neighY = rand[1];
+    // console.log(neighX,neighY)
+    if (matrix[neighY][neighX] == 0) {
       rand = this.random(all)
     }
     else {
@@ -26,6 +26,8 @@ module.exports = class Personage extends LivingCreature {
         for (let i in grassArr) {
           if (neighX == grassArr[i].x && neighY == grassArr[i].y) {
             grassArr.splice(i, 1);
+           
+
             break;
           }
         } //splice grass
@@ -42,12 +44,11 @@ module.exports = class Personage extends LivingCreature {
           }
         }//splice predator
         matrix[this.y][this.x] = 0
-        for(let i in personageArr){
-          console.log("hanec");
+        for (let i in personageArr) {
           if (this.x == personageArr[i].x && this.y == personageArr[i].y) {
             personageArr.splice(i, 1);
             break;
-          } 
+          }
         }
       }
     }

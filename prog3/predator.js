@@ -33,6 +33,7 @@ module.exports = class Predator extends LivingCreature {
       for (var i in grassArr) {
         if (oneCharecterX == grassArr[i].x && oneCharecterY == grassArr[i].y) {
           grassArr.splice(i, 1);
+
           break;
         }
       }
@@ -50,7 +51,7 @@ module.exports = class Predator extends LivingCreature {
     }
   }
   move() {
-    let emptyCells = this.chooseCell(0);
+    // let emptyCells = this.chooseCell(0);
     let oneEmptyCell = this.random(0);
     if (oneEmptyCell) {
       matrix[this.y][this.x] = 0;

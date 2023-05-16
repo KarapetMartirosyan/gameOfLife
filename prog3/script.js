@@ -10,11 +10,26 @@ function setup() {
   button2 = document.getElementById('spring');
   button3 = document.getElementById('autumn');
   button4 = document.getElementById('winter');
+  evt = document.getElementById("forEvent");
   button1.addEventListener("click" , onSocket);
   button2.addEventListener("click" , onSocket2);
   button3.addEventListener("click" , onSocket3);
   button4.addEventListener("click" , onSocket4);
+  evt.addEventListener("click", event1);
 }
+
+function event1(){
+  // count++
+  // if(count%2==0){
+  //   a = setInterval(game)
+  // }
+  // else if(count%2!=0){
+  //   clearInterval(a)
+  // }
+  soket.emit("signal", true)
+}
+
+
 function onSocket(){
   soket.on("send matrix", summer)
   soket.emit("weather",3)
@@ -44,7 +59,6 @@ function stateGenerator(data){
   predator.innerHTML = "PredatorCount: "  + data.predators;
   console.log(data);
 }
-
 soket.on("send state", stateGenerator)
 
 
