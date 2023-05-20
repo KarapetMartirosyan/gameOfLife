@@ -33,10 +33,33 @@ button{
     background-image: linear-gradient(to right,#e6dada, #274046);
     color: white;
 }
-#button_state{
+#buttons{
     display: flex;
+    width: 100%;    
 }
-
+#weather{
+    width: 50%;
+    display: flex;
+    padding-left: 6 0px;
+    margin-bottom: 40px;
+}
+#weather button{
+    margin-right: 20px;
+}
+#control{
+    width: 50%;
+    display: flex;
+    padding-left: 60%;
+}
+#control button{
+    margin-right: 20px;
+}
+#state{
+    position: absolute;
+    top: 30%;
+    left: 70%;
+    font-size: 30px;
+}
 #gameName{
     margin-left: 42%;
     letter-spacing: 10px;

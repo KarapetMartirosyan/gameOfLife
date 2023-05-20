@@ -9,20 +9,22 @@
     </head>
     <body>
         <h1 id="gameName">Game Of Life</h1>
-            <div id="button_state">
-                <div>
-                    <button id = "summer">Summer</button> 
+            <div id="buttons">
+                <div id="weather">
                     <button id = "spring">Spring</button>
-                    <button id = "winter">Winter</button> 
-                    <button id = "autumn">Autumn</button> <br>
+                    <button id = "summer">Summer</button> 
+                    <button id = "autumn">Autumn</button> 
+                    <button id = "winter">Winter</button><br>
+                </div>
+                <div id="control">
                     <button id="forEvent">Start/Stop</button>
                     <button id="restart">Restart Game</button>
                 </div>
-                <div>
-                    <p id="grass"></p><br>
-                    <p id="grassEater"></p><br>
-                    <p id="predator"></p><br>
-                </div>
+            </div> 
+            <div id = "state">
+                <p id="grass"></p><br>
+                <p id="grassEater"></p><br>
+                <p id="predator"></p><br>
             </div>
             <div id="game">
                 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
@@ -30,4 +32,4 @@
                 <script src="script.js"></script> 
             </div>
     </body>
-</html> 
+</html>     
