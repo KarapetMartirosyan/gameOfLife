@@ -142,6 +142,7 @@ io.on('connection', function (socket) {
    createObj()
    a = setInterval(game, 500)
    socket.on("signal",event1)
+   socket.on("restarting", restart)
    socket.on("weather", function (data) {
       mult = data
    });
@@ -151,7 +152,6 @@ setInterval(aa, 3000);
 matrixGenerator(24, 30, 10, 2, 3, 5);
 count  = 0
 function event1(){
-   console.log("signbaaaaaaal");
    count++
    if(count%2==0){
      a = setInterval(game,500)
@@ -160,4 +160,14 @@ function event1(){
      clearInterval(a)
    }
 }
-
+ 
+function restart(){
+   grassArr = [];
+   grassEaterArr = [];
+   matrix = [];
+   predatorArr = [];
+   bombArr = [];
+   personageArr = []
+   matrixGenerator(0, 0, 0, 0, 0, 0);
+   setTimeout(matrixGenerator(24, 30, 10, 2, 3, 5), 3000)
+}

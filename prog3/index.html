@@ -4,29 +4,30 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
         <title>Document</title>
     </head>
     <body>
-        <h1 id="evt">
-
-        </h1>
-        <button id = "summer">Summer</button>
-        <button id = "spring">Spring</button>
-        <button id = "winter">Winter</button>
-        <button id = "autumn">Autumn</button> <br>
-        <button id="forEvent">Start/Stop</button> 
-      <br>
-          <p id="grass">
-
-          </p><br>
-          <p id="grassEater">
-
-          </p><br>
-          <p id="predator">
-
-          </p><br>
-        <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script> 
-        <script src="script.js"></script> 
+        <h1 id="gameName">Game Of Life</h1>
+            <div id="button_state">
+                <div>
+                    <button id = "summer">Summer</button> 
+                    <button id = "spring">Spring</button>
+                    <button id = "winter">Winter</button> 
+                    <button id = "autumn">Autumn</button> <br>
+                    <button id="forEvent">Start/Stop</button>
+                    <button id="restart">Restart Game</button>
+                </div>
+                <div>
+                    <p id="grass"></p><br>
+                    <p id="grassEater"></p><br>
+                    <p id="predator"></p><br>
+                </div>
+            </div>
+            <div id="game">
+                <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script> 
+                <script src="script.js"></script> 
+            </div>
     </body>
 </html> 

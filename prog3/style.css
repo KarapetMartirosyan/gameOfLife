@@ -1,0 +1,46 @@
+*{
+    font-family: Comic Sans MS;
+}
+button{
+    cursor: pointer;
+}
+#summer{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right,#43cea2, #185a9d);
+    color: white;
+}
+
+#spring{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right,#fdfc47, #24fe41);
+    color: white;
+}
+#autumn{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right,#dad299, #b0dab9);
+    color: white;
+}
+#winter{
+    padding: 10px 22px;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right,#e6dada, #274046);
+    color: white;
+}
+#button_state{
+    display: flex;
+}
+
+#gameName{
+    margin-left: 42%;
+    letter-spacing: 10px;
+    background: linear-gradient(to right,red, blue,orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

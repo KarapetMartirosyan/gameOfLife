@@ -11,21 +11,20 @@ function setup() {
   button3 = document.getElementById('autumn');
   button4 = document.getElementById('winter');
   evt = document.getElementById("forEvent");
+  restart = document.getElementById("restart")
   button1.addEventListener("click" , onSocket);
   button2.addEventListener("click" , onSocket2);
   button3.addEventListener("click" , onSocket3);
   button4.addEventListener("click" , onSocket4);
   evt.addEventListener("click", event1);
+  restart.addEventListener("click", resting)
+}
+
+function resting(){
+  soket.emit("restarting", true)
 }
 
 function event1(){
-  // count++
-  // if(count%2==0){
-  //   a = setInterval(game)
-  // }
-  // else if(count%2!=0){
-  //   clearInterval(a)
-  // }
   soket.emit("signal", true)
 }
 
