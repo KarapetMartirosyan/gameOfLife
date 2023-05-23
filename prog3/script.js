@@ -17,7 +17,20 @@ function setup() {
   button3.addEventListener("click" , onSocket3);
   button4.addEventListener("click" , onSocket4);
   evt.addEventListener("click", event1);
-  restart.addEventListener("click", resting)
+  restart.addEventListener("click",resting);
+
+
+  window.addEventListener("keydown", function(evt){
+    if(evt.key==="r"){
+      resting()
+    }
+  })
+  window.addEventListener("keydown", function(evt){
+    if(evt.key==="p"){
+
+      event1()
+    }
+  })
 }
 
 function resting(){
@@ -56,7 +69,6 @@ function stateGenerator(data){
   grass.innerHTML = "GrassCount: "  + data.grasses;
   grassEater.innerHTML = "GrassEaterCount: "  + data.grassEaters;
   predator.innerHTML = "PredatorCount: "  + data.predators;
-  console.log(data);
 }
 soket.on("send state", stateGenerator)
 

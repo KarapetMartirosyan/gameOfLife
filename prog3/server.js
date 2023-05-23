@@ -118,9 +118,12 @@ function game() {
       grassEaters: grassEaterArr.length,
       predators: predatorArr.length,
    }
+   fs.writeFileSync('state.json', JSON.stringify(state, undefined, 2))
+
+   myState = fs.readFileSync('state.json').toString()
 // console.log(grassArr.length);
  
-   io.emit("send state", state)
+   io.emit("send state", JSON.parse(myState))
    snake.move();
    io.emit("send matrix", matrix)
 
@@ -173,7 +176,7 @@ function restart(){
    matrix =[]
 
    setTimeout(()=>{
-      matrixGenerator(24, 30, 10, 2, 3, 5,4)
+      matrixGenerator(24, 50, 10, 2, 3, 5,4)
       createObj()
-   }, 3000)
+   }, 500)
 }
