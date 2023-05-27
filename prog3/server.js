@@ -69,7 +69,7 @@ function matrixGenerator(size, countGrass, countGrassEater, countPredator, count
    matrix[0][0] = a;
    io.emit("send matrix", matrix)
 }
-
+matrixGenerator(24, 50, 10, 2, 3, 5,4);
 function createObj() {
    for (var y = 0; y < matrix.length; y++) {
       for (var x = 0; x < matrix[y].length; x++) {
@@ -97,6 +97,7 @@ function createObj() {
 }
 var mult = 4
 
+createObj()
 
 
 function game() {
@@ -140,10 +141,12 @@ function mushrooms() {
       personageArr[i].mushroom();
    }
 }
+
 let a;
+
+a = setInterval(game, 500)
 io.on('connection', function (socket) {
-   createObj()
-   a = setInterval(game, 500)
+ 
    socket.on("signal",event1)
    socket.on("restarting", restart)
    socket.on("weather", function (data) {
@@ -152,7 +155,7 @@ io.on('connection', function (socket) {
 });
 setInterval(mushrooms, 10000)
 setInterval(aa, 3000);
-matrixGenerator(24, 30, 10, 2, 3, 5,4);
+
 count  = 0
 function event1(){
    
@@ -172,8 +175,8 @@ function restart(){
    predatorArr = [];
    bombArr = [];
    personageArr = []  
-    matrixGenerator(24, 0, 0, 0, 0, 0,0);
-   matrix =[]
+   matrixGenerator(24, 0, 0, 0, 0, 0,0);
+   matrix = []
 
    setTimeout(()=>{
       matrixGenerator(24, 50, 10, 2, 3, 5,4)
