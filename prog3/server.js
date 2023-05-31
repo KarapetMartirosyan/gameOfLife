@@ -193,7 +193,6 @@ function addGrass(){
    for (let i = 0; i < 10; i++){
       let x = Math.floor(getRandInt(0, 23));
       let y = Math.floor(getRandInt(0, 23));
-      console.log(matrix[x][y]);
       if(matrix[x][y] === 0){
          matrix[x][y] = 1;
          let grass = new Grass(x, y);
@@ -205,7 +204,6 @@ function addGrassEater(){
    for (let i = 0; i < 10; i++){
       let x = Math.floor(getRandInt(0, 23));
       let y = Math.floor(getRandInt(0, 23));
-      console.log(matrix[x][y]);
       if(matrix[x][y] === 0){
          matrix[x][y] = 1;
          let grass = new Grass(x, y);
