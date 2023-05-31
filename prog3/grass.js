@@ -11,4 +11,5 @@ module.exports = class Grass extends LivingCreature {
       this.multiplay = 0;
     }
   }
+  
 }

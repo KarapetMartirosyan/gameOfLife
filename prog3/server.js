@@ -18,18 +18,21 @@ let Predator = require("./predator")
 let Snake = require("./snake")
 let Bomb = require("./bomb")
 let Personage = require("./personage")
+let LivingCreature = require("./livingcreature");
+const { log } = require('console');
 
 function getRandInt(min, max) {
    var z = Math.floor(Math.random() * (max - min + 1)) + min;
    return z;
 }
 
+matrix = [];
 grassArr = [];
 grassEaterArr = [];
-matrix = [];
+
 predatorArr = [];
 bombArr = [];
-personageArr = []
+personageArr = [];
 function matrixGenerator(size, countGrass, countGrassEater, countPredator, countBomb, countPersonage,a) {
    for (let i = 0; i < size; i++) {
       matrix.push([]);
@@ -122,7 +125,7 @@ function game() {
    fs.writeFileSync('state.json', JSON.stringify(state, undefined, 2))
 
    myState = fs.readFileSync('state.json').toString()
-// console.log(grassArr.length);
+// console.log(grassArr.length)
  
    io.emit("send state", JSON.parse(myState))
    snake.move();
@@ -152,6 +155,8 @@ io.on('connection', function (socket) {
    socket.on("weather", function (data) {
       mult = data
    });
+   socket.on("adding",addGrass)
+   socket.on("addingGE",addGrassEater)
 });
 setInterval(mushrooms, 10000)
 setInterval(aa, 3000);
@@ -182,4 +187,40 @@ function restart(){
       matrixGenerator(24, 50, 10, 2, 3, 5,4)
       createObj()
    }, 500)
+}
+
+function addGrass(){
+   for (let i = 0; i < 10; i++){
+      let x = Math.floor(getRandInt(0, 23));
+      let y = Math.floor(getRandInt(0, 23));
+      console.log(matrix[x][y]);
+      if(matrix[x][y] === 0){
+         matrix[x][y] = 1;
+         let grass = new Grass(x, y);
+         grassArr.push(grass);
+      }
+   }
+}
+function addGrassEater(){
+   for (let i = 0; i < 10; i++){
+      let x = Math.floor(getRandInt(0, 23));
+      let y = Math.floor(getRandInt(0, 23));
+      console.log(matrix[x][y]);
+      if(matrix[x][y] === 0){
+         matrix[x][y] = 1;
+         let grass = new Grass(x, y);
+         grassArr.push(grass);
+      }
+      if(matrix[x][y] === 1){
+         for (var j in grassArr) {
+            if (x == grassArr[j].x && y == grassArr[j].y) {
+               grassArr.splice(i, 1);
+               break;
+            }
+          }
+         matrix[x][y] = 2;
+         let grassEater = new GrassEater(x, y);
+         grassEaterArr.push(grassEater);
+      }
+   }
 }

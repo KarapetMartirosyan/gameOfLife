@@ -12,12 +12,17 @@ function setup() {
   button4 = document.getElementById('winter');
   evt = document.getElementById("forEvent");
   restart = document.getElementById("restart");
+  grassAdder = document.getElementById("addingGrass");
+  grassAdderEater = document.getElementById("addingGrassEater");
   button1.addEventListener("click" , onSocket);
   button2.addEventListener("click" , onSocket2);
   button3.addEventListener("click" , onSocket3);
   button4.addEventListener("click" , onSocket4);
   evt.addEventListener("click", event1);
   restart.addEventListener("click",resting);
+  grassAdder.addEventListener("click",adding);
+  grassAdderEater.addEventListener("click",addingGE);
+
 
 
   window.addEventListener("keydown", function(evt){
@@ -35,6 +40,13 @@ function setup() {
 
 function resting(){
   soket.emit("restarting", true)
+}
+
+function adding(){
+  soket.emit("adding", true)
+}
+function addingGE(){
+  soket.emit("addingGE", true)
 }
 
 function event1(){
